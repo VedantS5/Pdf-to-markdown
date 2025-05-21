@@ -9,6 +9,16 @@ Each method has different strengths and capabilities:
 - docling: Advanced document structure recognition with table support
 - marker: Marker-based conversion with good formatting preservation
 - pymu: Simple text extraction using PyMuPDF (fastest option)
+
+LICENSING NOTICE:
+    This wrapper code is licensed under MIT License.
+    However, it depends on tools with different licenses:
+    - PyMuPDF: GNU GPL v3 license
+    - Docling: Proprietary license
+    - Marker: Open-source license
+    
+    Users must comply with all licenses of tools they use.
+    See README.md for detailed licensing information.
 """
 
 import os

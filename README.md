@@ -153,9 +153,19 @@ Contributions are welcome! Here are ways you can contribute:
 3. Improve documentation
 4. Optimize existing code
 
-## License
+## License Notice
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This wrapper code is licensed under the MIT License - see the LICENSE file for details. However, this project depends on several tools that have their own licenses:
+
+- **PyMuPDF**: GNU GPL v3 license - [PyMuPDF License](https://github.com/pymupdf/PyMuPDF/blob/master/COPYING)
+- **Docling**: Proprietary license - Commercial use may require a license
+- **Marker**: Open-source license - [Marker License](https://github.com/marker-doc/marker/blob/main/LICENSE)
+
+Users must comply with all relevant licenses when using this software. This is especially important if you're using this software for commercial purposes.
+
+## Disclaimer
+
+This project is a wrapper that provides a unified interface to existing tools. The authors of this wrapper are not affiliated with the creators of the underlying tools. Use at your own risk and ensure you comply with the licenses of all underlying dependencies.
 
 ## Acknowledgments
 

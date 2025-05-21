@@ -1,6 +1,14 @@
+# Base dependency (GPL v3 license) - Required for PyMuPDF converter
 pymupdf>=1.22.0
-# Optional dependencies based on converter choice:
-# For docling converter:
+
+# OPTIONAL DEPENDENCIES - Install based on which converter you plan to use
+
+# For docling converter (Proprietary license):
 # docling>=0.8.0
-# For marker converter, follow installation instructions at:
-# https://github.com/marker-doc/marker
+
+# For marker converter (Open-source license)
+# Follow installation instructions at: https://github.com/marker-doc/marker
+
+# LICENSING NOTICE:
+# When using this tool with any of the above dependencies, you must comply
+# with the license terms of each dependency. See README.md for details.
