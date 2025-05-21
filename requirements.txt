@@ -1,0 +1,6 @@
+pymupdf>=1.22.0
+# Optional dependencies based on converter choice:
+# For docling converter:
+# docling>=0.8.0
+# For marker converter, follow installation instructions at:
+# https://github.com/marker-doc/marker
