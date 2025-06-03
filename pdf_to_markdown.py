@@ -144,36 +144,25 @@ def run_pymu_converter(input_path, output_path, pages, batch_size, num_processes
     # Make sure paths are absolute
     input_abs = os.path.abspath(input_path)
     output_abs = os.path.abspath(output_path)
-    
+
     print(f"Running PyMuPDF converter with {num_processes} processes")
     print(f"Input: {input_abs}")
     print(f"Output: {output_abs}")
     print(f"Pages to extract: {pages}")
     print(f"Batch size: {batch_size}")
-    
-    # Import pymu module using importlib
-    import importlib.util
+
+    # Run the PyMuPDF extractor as a separate process
     module_path = os.path.join(os.path.dirname(__file__), "pymu/01_pymu_pdf_to_text.py")
-    spec = importlib.util.spec_from_file_location("pymu_module", module_path)
-    pymu_module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(pymu_module)
-    pymu_main = pymu_module.main
-    
-    # Save original argv and restore after
-    original_argv = sys.argv
-    sys.argv = [
-        "pymu_converter",
+    cmd = [
+        sys.executable,
+        module_path,
         input_abs,
         output_abs,
         "--pages", str(pages),
         "--batch", str(batch_size),
         "--num_procs", str(num_processes)
     ]
-    
-    try:
-        pymu_main()
-    finally:
-        sys.argv = original_argv
+    subprocess.run(cmd, check=True)
 
 
 def main():
