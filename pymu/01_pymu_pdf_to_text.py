@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import argparse
 import fitz  # PyMuPDF
 import multiprocessing
@@ -93,7 +94,7 @@ def process_batch(input_dir, output_dir, pages_to_extract, batch_size, num_proce
     ) as pool:
         pool.starmap(process_pdf, args_list)
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Extract first N pages from each PDF in a directory (batch mode, multiprocessing enabled)."
     )
@@ -112,25 +113,18 @@ if __name__ == "__main__":
         help="Number of parallel processes to use (default: 2)."
     )
     args = parser.parse_args()
-
-    # Ensure output directory exists
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
-    
-    # Create a manager to hold our shared processed files cache
+
     with multiprocessing.Manager() as manager:
         shared_processed = manager.dict()
-        
-        # Preload the shared cache with existing processed files
         print("Building initial cache from output directory...")
         for file in Path(args.output_dir).iterdir():
             if file.suffix.lower() == ".txt":
-                # Extract the original stem without the _pagesN suffix
                 stem = file.stem.replace(f"_pages{args.pages}", "")
                 key = f"{stem}_pages{args.pages}"
                 shared_processed[key] = True
         print(f"Found {len(shared_processed)} already processed files in output directory.")
-        
-        # Process the batch with shared cache
+
         process_batch(
             args.input_dir,
             args.output_dir,
@@ -139,4 +133,7 @@ if __name__ == "__main__":
             args.num_procs,
             shared_processed
         )
+    return 0
 
+if __name__ == "__main__":
+    sys.exit(main())
